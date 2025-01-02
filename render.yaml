@@ -1,11 +1,6 @@
 services:
   - type: web
-    name: laravel-app
-    env: php
+    name: cultivua-laravel
+    env: docker
+    dockerfilePath: Dockerfile
     plan: free
-    buildCommand: |
-      apt-get update && apt-get install -y php php-cli php-fpm php-mysql
-      composer install
-    startCommand: "php -S 0.0.0.0:8080 -t public"
-    regions:
-      - oregon
