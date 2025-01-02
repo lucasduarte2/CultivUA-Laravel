@@ -1,4 +1,3 @@
-# Use uma imagem oficial do PHP com Apache
 FROM php:8.1-apache
 
 # Instalar dependências do PHP necessárias para o Laravel
@@ -8,6 +7,7 @@ RUN apt-get update && apt-get install -y \
     libfreetype6-dev \
     zip \
     git \
+    curl \
     && docker-php-ext-configure gd --with-freetype --with-jpeg \
     && docker-php-ext-install gd pdo pdo_mysql
 
