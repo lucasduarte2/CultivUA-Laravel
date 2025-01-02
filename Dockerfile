@@ -1,25 +1,23 @@
-FROM php:8.2-fpm
+# Usar a imagem oficial do PHP com o Composer
+FROM php:8.1-fpm
 
+# Instalar as dependências necessárias
+RUN apt-get update && apt-get install -y libpng-dev libjpeg-dev libfreetype6-dev zip git unzip libicu-dev && docker-php-ext-configure gd --with-freetype --with-jpeg && docker-php-ext-install gd intl pdo pdo_mysql
+
+# Instalar o Composer
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+
+# Configurar o diretório de trabalho
 WORKDIR /var/www
 
-RUN apt-get update && apt-get install -y \
-    build-essential \
-    libpng-dev \
-    libjpeg62-turbo-dev \
-    libfreetype6-dev \
-    locales \
-    zip \
-    jpegoptim optipng pngquant gifsicle \
-    vim \
-    unzip \
-    git \
-    curl \
-    libzip-dev \
-    && docker-php-ext-configure gd --with-freetype --with-jpeg \
-    && docker-php-ext-install pdo pdo_mysql zip exif pcntl gd
+# Copiar os arquivos do projeto
+COPY . .
 
-COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
+# Instalar as dependências do Laravel
+RUN composer install --no-dev --optimize-autoloader
 
-COPY . /var/www
+# Expor a porta 9000 (usada pelo PHP-FPM)
+EXPOSE 9000
 
-RUN composer install
+# Executar o servidor PHP
+CMD ["php-fpm"]
