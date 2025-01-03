@@ -1,10 +1,6 @@
 {
     "private": true,
     "type": "module",
-    "scripts": {
-        "build": "vite build",
-        "dev": "vite"
-    },
     "devDependencies": {
         "@types/bootstrap": "^5.2.10",
         "@types/jasmine": "^5.1.5",
