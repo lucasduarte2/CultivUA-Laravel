@@ -64,8 +64,8 @@ class PaymentController extends Controller
                     ];
                 }, $cartItems),
                 'mode' => 'payment',
-                'success_url' => 'http://localhost:4200/loja-online/agradecimento?clearLocalStorage=true',  // URL de sucesso
-                'cancel_url' => 'http://localhost:4200/loja-online/checkout',  // URL de cancelamento
+                'success_url' => 'https://cultivua.netlify.app/loja-online/agradecimento?clearLocalStorage=true',  // URL de sucesso
+                'cancel_url' => 'https://cultivua.netlify.app/loja-online/checkout',  // URL de cancelamento
                 'shipping_address_collection' => [
     'allowed_countries' => [
         'AC', 'AD', 'AE', 'AF', 'AG', 'AI', 'AL', 'AM', 'AO', 'AQ', 'AR', 'AT', 'AU', 'AW', 'AX', 'AZ', 'BA', 
