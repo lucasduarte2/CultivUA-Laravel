@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Carbon\Carbon;
 
-class productController extends Controller
+class ProductController extends Controller
 {
     // Método para listar produtos
     public function index()
