@@ -19,7 +19,7 @@ class AdminAuthController extends Controller
 
         $credentials = $request->only('username', 'password');
 
-        if (Auth::guard('admin')->attempt($credentials)) { // Utilize o guard para admins
+        if (Auth::guard('admin')->attempt($credentials)) {
             $admin = Auth::guard('admin')->user();
             $token = $admin->createToken('AdminToken', ['admin'])->plainTextToken;
 
@@ -30,11 +30,13 @@ class AdminAuthController extends Controller
                 'image' => $admin->image,
                 'username' => $admin->username,
                 'user_type' => 'admin',
+                'role' => 'admin', // Adiciona explicitamente a role para verificar no frontend
             ]);
         }
 
         return response()->json(['error' => 'Unauthorized'], 401);
     }
+
 
     // Logout via API
     public function logout(Request $request)
